@@ -1,3 +1,21 @@
+## 1.3.5 (2021-05-25)
+
+### Bug fixes
+
+Avoid a crash that happened when the document shrank during dragging.
+
+## 1.3.4 (2021-04-01)
+
+### Bug fixes
+
+Hide the drop cursor when `dropPoint` doesn't return a position.
+
+## 1.3.3 (2021-02-04)
+
+### Bug fixes
+
+Fix drop cursor positioning when the editor's `offsetParent` has been scrolled.
+
 ## 1.3.2 (2019-11-20)
 
 ### Bug fixes

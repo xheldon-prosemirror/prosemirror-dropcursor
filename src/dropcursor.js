@@ -44,7 +44,10 @@ class DropCursorView {
   }
 
   update(editorView, prevState) {
-    if (this.cursorPos != null && prevState.doc != editorView.state.doc) this.updateOverlay()
+    if (this.cursorPos != null && prevState.doc != editorView.state.doc) {
+      if (this.cursorPos > editorView.state.doc.content.size) this.setCursor(null)
+      else this.updateOverlay()
+    }
   }
 
   setCursor(pos) {
@@ -81,10 +84,17 @@ class DropCursorView {
       if (this.class) this.element.className = this.class
       this.element.style.cssText = "position: absolute; z-index: 50; pointer-events: none; background-color: " + this.color
     }
-    let parentRect = !parent || parent == document.body && getComputedStyle(parent).position == "static"
-        ? {left: -pageXOffset, top: -pageYOffset} : parent.getBoundingClientRect()
-    this.element.style.left = (rect.left - parentRect.left) + "px"
-    this.element.style.top = (rect.top - parentRect.top) + "px"
+    let parentLeft, parentTop
+    if (!parent || parent == document.body && getComputedStyle(parent).position == "static") {
+      parentLeft = -pageXOffset
+      parentTop = -pageYOffset
+    } else {
+      let rect = parent.getBoundingClientRect()
+      parentLeft = rect.left - parent.scrollLeft
+      parentTop = rect.top - parent.scrollTop
+    }
+    this.element.style.left = (rect.left - parentLeft) + "px"
+    this.element.style.top = (rect.top - parentTop) + "px"
     this.element.style.width = (rect.right - rect.left) + "px"
     this.element.style.height = (rect.bottom - rect.top) + "px"
   }
@@ -101,7 +111,7 @@ class DropCursorView {
       let target = pos.pos
       if (this.editorView.dragging && this.editorView.dragging.slice) {
         target = dropPoint(this.editorView.state.doc, target, this.editorView.dragging.slice)
-        if (target == null) target = pos.pos
+        if (target == null) return this.setCursor(null)
       }
       this.setCursor(target)
       this.scheduleRemoval(5000)
