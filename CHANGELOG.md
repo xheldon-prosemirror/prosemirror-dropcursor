@@ -1,3 +1,69 @@
+## 1.8.1 (2023-05-17)
+
+### Bug fixes
+
+Include CommonJS type declarations in the package to please new TypeScript resolution settings.
+
+## 1.8.0 (2023-03-27)
+
+### New features
+
+If the `color` option is set to `false`, the library will not assign an explicit color to the cursor.
+
+## 1.7.1 (2023-03-02)
+
+### Bug fixes
+
+Don't hide the drop cursor when no valid drop point can be found below the pointer.
+
+## 1.7.0 (2023-02-07)
+
+### New features
+
+The drop cursor element now has a `prosemirror-blockcursor-block`/`inline` CSS class depending on whether it is in a block or inline position.
+
+## 1.6.1 (2022-10-25)
+
+### Bug fixes
+
+Fix a crash when there's no DOM for the node next to the drag position.
+
+## 1.6.0 (2022-08-07)
+
+### New features
+
+`disableDropCursor` is now passed the dragover event as 3rd argument.
+
+## 1.5.0 (2022-05-30)
+
+### New features
+
+Include TypeScript type declarations.
+
+## 1.4.0 (2021-11-11)
+
+### New features
+
+Add support for a `disableDropCursor` property on node specs, which can be used to turn off the drop cursor inside such nodes.
+
+## 1.3.5 (2021-05-25)
+
+### Bug fixes
+
+Avoid a crash that happened when the document shrank during dragging.
+
+## 1.3.4 (2021-04-01)
+
+### Bug fixes
+
+Hide the drop cursor when `dropPoint` doesn't return a position.
+
+## 1.3.3 (2021-02-04)
+
+### Bug fixes
+
+Fix drop cursor positioning when the editor's `offsetParent` has been scrolled.
+
 ## 1.3.2 (2019-11-20)
 
 ### Bug fixes
